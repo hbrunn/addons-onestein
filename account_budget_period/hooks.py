@@ -33,6 +33,9 @@ def post_init_hook(cr, registry):
         except exceptions.RedirectWarning:
             pass
 
+        if not period_start or not period_stop:
+            continue
+
         budget_obj.write(
             cr, SUPERUSER_ID, budget_data[0],
             {'period_start': period_start and period_start[0] or None,
